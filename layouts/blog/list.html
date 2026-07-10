@@ -1,0 +1,26 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>📝 Blog</h1>
+    <p class="subtitle">技术文章与想法</p>
+  </div>
+</div>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="card" style="margin-bottom:1rem;">
+      <h3 style="margin-bottom:0.3rem;">
+        <a href="{{ .RelPermalink }}" style="color:var(--color-text-dark);text-decoration:none;">{{ .Title }}</a>
+      </h3>
+      <div class="card-meta">{{ .Date.Format "2006-01-02" }} · {{ .ReadingTime }}分钟阅读</div>
+      <p style="color:var(--color-text-gray);font-size:0.9rem;">{{ .Description }}</p>
+      <div class="card-tags" style="margin-top:0.5rem;">
+        {{ range .Params.tags }}
+        <span class="tag">{{ . }}</span>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

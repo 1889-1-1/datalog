@@ -1,0 +1,36 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <p style="font-size:0.82rem;color:var(--color-text-meta);margin-bottom:0.5rem;">
+      Wiki · <a href="{{ .CurrentSection.RelPermalink }}" style="color:var(--color-text-meta);">{{ .CurrentSection.Title }}</a>
+    </p>
+    <h1>{{ .Title }}</h1>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container-wide">
+    <div class="wiki-wrapper">
+      <aside class="wiki-sidebar">
+        <h4>{{ .CurrentSection.Title }}</h4>
+        <ul>
+          {{ $currentSection := .CurrentSection }}
+          {{ $currentPage := . }}
+          {{ range $currentSection.Pages.ByTitle }}
+          <li>
+            <a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $currentPage.RelPermalink }} class="active"{{ end }}>
+              {{ .Title }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+      </aside>
+      <div class="wiki-content">
+        <div class="post-body">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,65 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <p style="font-size:0.82rem;color:var(--color-text-meta);margin-bottom:0.5rem;">Portfolio · {{ .Date.Format "2006-01" }}</p>
+    <h1>{{ .Title }}</h1>
+  </div>
+</div>
+
+<article class="container" style="max-width:800px;margin:0 auto;">
+  <!-- key insight -->
+  {{ with .Params.key_insight }}
+  <div class="highlight-box">
+    <div class="label">📌 一句话总结</div>
+    <div class="text">{{ . }}</div>
+  </div>
+  {{ end }}
+
+  <!-- metrics + chart -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem;">
+    {{ with .Params.metrics }}
+    <div class="metrics-grid" style="grid-column:1;">
+      {{ range . }}
+      <div class="metric-card">
+        <div class="metric-value">{{ .value }}</div>
+        <div class="metric-label">{{ .label }}</div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+    {{ with .Params.chart }}
+    <div class="chart-area" id="projectChart" style="grid-column:2;min-height:240px;">
+      <div class="chart-icon">📊</div>
+      <div class="chart-hint">{{ .description | default "交互式图表" }}</div>
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- method · findings · code -->
+  {{ with .Params.methods }}
+  <div class="project-meta-row">
+    <span class="meta-label">方法</span>
+    <span class="meta-value">{{ . }}</span>
+  </div>
+  {{ end }}
+  {{ with .Params.findings }}
+  <div class="project-meta-row">
+    <span class="meta-label">洞察</span>
+    <span class="meta-value">{{ . }}</span>
+  </div>
+  {{ end }}
+  {{ with .Params.code_link }}
+  <div class="project-meta-row">
+    <span class="meta-label">代码</span>
+    <a href="{{ . }}" class="meta-value" target="_blank">查看完整代码 →</a>
+  </div>
+  {{ end }}
+
+  <!-- Markdown body -->
+  <div class="post-body" style="margin-top:1.5rem;">
+    {{ .Content }}
+  </div>
+
+  <a href="{{ "/portfolio/" | relURL }}" class="post-back">← 返回 Portfolio</a>
+</article>
+{{ end }}

@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>📚 Wiki</h1>
+    <p class="subtitle">知识库 · 爬虫 / 安全 / 摄影</p>
+  </div>
+</div>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="category-cards">
+      {{ range .Sections.ByTitle }}
+      <a href="{{ .RelPermalink }}" class="category-card{{ if eq .Title "摄影" }} featured{{ end }}">
+        <div class="cat-icon">
+          {{ if eq .Title "爬虫" }}🕷️{{ else if eq .Title "网络安全" }}🔒{{ else }}📷{{ end }}
+        </div>
+        <div class="cat-name">{{ .Title }}</div>
+        <div class="cat-count">{{ len .Pages }} 篇文章</div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
