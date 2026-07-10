@@ -1,0 +1,32 @@
+baseURL = "https://datalog.vercel.app/"
+languageCode = "zh-CN"
+title = "DataLog"
+theme = ""
+
+[params]
+  author = "查清"
+  description = "数据分析师 · Python · 机器学习 · 从数据中发现故事"
+  github = "https://github.com/yourusername"
+  email = "yourname@example.com"
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.x]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = true
