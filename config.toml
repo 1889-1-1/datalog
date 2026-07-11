@@ -5,7 +5,7 @@ title = "DataLog"
 theme = ""
 
 [params]
-  author = "查清"
+  author = "李曼姝"
   description = "数据分析师 · Python · 机器学习 · 从数据中发现故事"
   github = "https://github.com/yourusername"
   email = "yourname@example.com"
