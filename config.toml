@@ -2,7 +2,6 @@ baseURL = "https://singular-medovik-e40375.netlify.app/"
 languageCode = "zh-CN"
 locale = "zh-CN"
 title = "DataLog"
-theme = ""
 
 [params]
   author = "李曼姝"
