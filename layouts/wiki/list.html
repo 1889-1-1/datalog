@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ if .Sections }}
+<!-- Top-level Wiki: show category cards -->
 <div class="page-header">
   <div class="container">
     <h1>📚 Wiki</h1>
@@ -20,4 +22,37 @@
     </div>
   </div>
 </section>
+{{ else }}
+<!-- Sub-category: show article list with sidebar -->
+<div class="page-header">
+  <div class="container">
+    <p style="font-size:0.82rem;color:var(--color-text-meta);margin-bottom:0.5rem;">
+      Wiki · <a href="{{ "/wiki/" | relURL }}" style="color:var(--color-text-meta);">知识库</a>
+    </p>
+    <h1>{{ .Title }}</h1>
+  </div>
+</div>
+<section class="section" style="padding-top:0;">
+  <div class="container-wide">
+    <div class="wiki-wrapper">
+      <aside class="wiki-sidebar">
+        <h4>{{ .Title }}</h4>
+        <ul>
+          {{ $currentPage := . }}
+          {{ range .Pages.ByTitle }}
+          <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </aside>
+      <div class="wiki-content">
+        <div class="post-body">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
 {{ end }}
