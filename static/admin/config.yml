@@ -1,0 +1,80 @@
+backend:
+  name: git-gateway
+  branch: main
+  repo: 1889-1-1/datalog
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+locale: "zh_Hans"
+
+collections:
+  - name: "portfolio"
+    label: "📊 Portfolio"
+    label_singular: "作品"
+    folder: "content/portfolio"
+    path: "{{slug}}/index"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "作品名称", name: "title", widget: "string" }
+      - { label: "日期", name: "date", widget: "datetime" }
+      - { label: "一句话描述", name: "summary", widget: "string" }
+      - { label: "核心洞察", name: "key_insight", widget: "text" }
+      - { label: "标签", name: "tags", widget: "list", default: ["Python"] }
+      - { label: "方法路径", name: "methods", widget: "string" }
+      - { label: "核心发现", name: "findings", widget: "text" }
+      - { label: "代码链接", name: "code_link", widget: "string", required: false }
+      - label: "关键指标"
+        name: "metrics"
+        widget: "list"
+        fields:
+          - { label: "指标名", name: "label", widget: "string" }
+          - { label: "数值", name: "value", widget: "string" }
+      - label: "图表"
+        name: "chart"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "图表描述", name: "description", widget: "string" }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "blog"
+    label: "📝 Blog"
+    label_singular: "文章"
+    folder: "content/blog"
+    path: "{{year}}-{{month}}-{{day}}-{{slug}}/index"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "摘要", name: "description", widget: "string" }
+      - { label: "标签", name: "tags", widget: "list", default: ["数据"] }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "wiki"
+    label: "📚 Wiki"
+    label_singular: "条目"
+    folder: "content/wiki"
+    create: true
+    nested:
+      depth: 100
+    meta: { path: { widget: string, label: "路径", index_file: "index" } }
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "日期", name: "date", widget: "datetime" }
+      - { label: "描述", name: "description", widget: "string", required: false }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "about"
+    label: "👤 关于我"
+    files:
+      - file: "content/about/index.md"
+        label: "个人介绍"
+        name: "about"
+        fields:
+          - { label: "标题", name: "title", widget: "string" }
+          - { label: "日期", name: "date", widget: "datetime" }
+          - { label: "描述", name: "description", widget: "string" }
+          - { label: "正文", name: "body", widget: "markdown" }
